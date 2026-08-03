@@ -693,8 +693,11 @@ jobs:
 
       # LE BINAIRE NE PART QU'EN MODE DISTRIBUTION. En diagnostic, cette étape
       # ne s'exécute pas : un binaire sans webhook ne peut donc pas circuler.
+      # ⚠️ BRANCHE D'ESSAI UNIQUEMENT — condition retirée pour récupérer le
+      # binaire en mode diagnostic. Le secret n'est PAS touché : ce binaire
+      # n'a pas de webhook, il ne sert qu'à éprouver la mise à jour Linux.
+      # Ne JAMAIS fusionner cette modification.
       - name: Exporter le binaire en ARTEFACT (jamais en release)
-        if: env.MODE == 'distribution'
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
         with:
           name: AscensionFR_Hub-linux
